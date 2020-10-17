@@ -14,7 +14,7 @@ Creates external help file based on markdown supported by PlatyPS.
 
 ```
 New-ExternalHelp -Path <String[]> -OutputPath <String> [-ApplicableTag <String[]>] [-Encoding <Encoding>]
- [-MaxAboutWidth <Int32>] [-ErrorLogFile <String>] [-Force] [<CommonParameters>]
+ [-MaxAboutWidth <Int32>] [-ErrorLogFile <String>] [-Force] [-ShowProgress] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -97,7 +97,6 @@ Specify a **System.Text.Encoding** object.
 For more information, see [Character Encoding in the .NET Framework](https://msdn.microsoft.com/en-us/library/ms404377.aspx) in the Microsoft Developer Network.
 For example, you can control Byte Order Mark (BOM) preferences.
 For more information, see [Using PowerShell to write a file in UTF-8 without the BOM](http://stackoverflow.com/questions/5596982/using-powershell-to-write-a-file-in-utf-8-without-the-bom) at the Stack Overflow community.
-
 
 ```yaml
 Type: Encoding
@@ -203,8 +202,25 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ShowProgress
+Display progress bars under parsing existing markdown files.
+
+If this is used generating of help is much slower.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

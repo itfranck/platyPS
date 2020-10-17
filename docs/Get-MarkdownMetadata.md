@@ -92,7 +92,6 @@ This command gets metadata from each of the markdown files in the .\docs folder.
 ### -Path
 Specifies an array of paths of markdown files or folders.
 
-
 ```yaml
 Type: String[]
 Parameter Sets: FromPath
@@ -108,7 +107,6 @@ Accept wildcard characters: True
 ### -Markdown
 Specifies a string that contains markdown formatted text.
 
-
 ```yaml
 Type: String
 Parameter Sets: FromMarkdownString
@@ -122,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

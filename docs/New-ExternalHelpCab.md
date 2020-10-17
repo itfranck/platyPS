@@ -46,7 +46,6 @@ The command places the .cab file in the output folder.
 ### -CabFilesFolder
 Specifies the folder that contains the help content that this cmdlet packages into a .cab file.
 
-
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -63,7 +62,6 @@ Accept wildcard characters: False
 Specifies the full path of the Module Markdown file that contains all the metadata required to name the .cab file.
 For the required metadata, run **New-MarkdownHelp** with the *WithLandingPage* parameter.
 
-
 ```yaml
 Type: String
 Parameter Sets: (All)
@@ -78,7 +76,6 @@ Accept wildcard characters: False
 
 ### -OutputFolder
 Specifies the location of the .cab file and helpinfo.xml file that this cmdlet creates.
-
 
 ```yaml
 Type: String
@@ -108,7 +105,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

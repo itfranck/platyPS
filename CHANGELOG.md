@@ -3,6 +3,58 @@ CHANGELOG
 
 ## Not released
 
+# 0.14.0
+
+* Fix passing `ExcludeDontShow` flag to modules (#459)
+* Make `CommonParameters` text use proper link format (#449)
+* Modified `GetSchemaVersion` function to assume `2.0.0` if no schema version found (#452)
+* Fix errors for `New-MarkdownHelp` `ps1` input (#450)
+
+# 0.13.0
+
+* Fix `Update-MarkdownHelp` to not rewrite files if there are not updates (#412) (Thanks @iricigor)
+* Add `-ModulePagePath` parameter to `New-MarkdownHelp` for better placement of generated file (#416) (Thanks @PrzemyslawKlys)
+* Remove doubled blank lines and trailing spaces in docs (#425) (Thanks @it-praktyk)
+* Add Localized Data support for strings in `platyPS.psm1` (#426) (Thanks @tnieto88)
+* Add tags to module manifest to improve search on gallery (#428) (Thanks @it-praktyk)
+* Fix `Update-MarkdownHelp` to respect order of parameters (#423) (Thanks @it-praktyk)
+* Fix `Update-MarkdownHelpModule` to respect `-Force` parameter (#438) (Thanks @it-praktyk)
+* Fix for Common and Workflow parameters autowrap (#431) (Thanks @PrzemyslawKlys)
+* Do not generate help content for parameters with `DontShow` attribute if `-ExlcudeDontShow` switch is used (#445) (Thanks @MiYanni)
+
+## 0.12.0
+
+* Include proper escaping handing for `\*` and `\_` (#398)
+* Update YamlDotNet dependency to 5.0.0 (CVE-2018-1000210)
+* Add New-ExternalHelpCab File Type Check (#403)
+* Add `Update-MarkdownHelpModule -ModulePagePath` parameter (#397)
+
+## 0.11.1
+
+* Fix the incorrect metadata retrieval for the single parameter sets in remote sessions (#399).
+
+## 0.11.0
+
+* Add default descriptions for paging parameters (#392).
+* Fix `yaml` new-line bug (#381).
+* Add `-UpdateInputOutput` parameter (#383).
+* Add `-UseFullName` parameter to Update-MarkdownHelpModule (#380)
+
+## 0.10.2
+
+* Fix remote module support to work correctly with parameter sets with no parameters.
+
+## 0.10.1
+
+* Fix remote module support for PowerShell version 3.0 and 4.0.
+* Avoid doubling `about_` when user provide it in the `AboutName` parameter.
+
+## 0.10.0
+
+* Add basic deduplication for Examples in `Merge-MarkdownHelp` [#331](https://github.com/PowerShell/platyPS/issues/331)
+* Support for remote modules. Pass `-Session` parameter in supported cmdlets to retrieve accurate metadata from the remote session.
+* The ShowProgress parameter was added to the New-ExternalHelp function. By default progress bars are not display to increase speed of files processing.
+
 ## 0.9.0
 
 * platyPS is now cross platform and works on powershell 6.0 as well as previous versions of powershell.
@@ -56,7 +108,7 @@ CHANGELOG
 
 * Updated New-ExternalHelpCab.md for removing duplicate word in synopsis.
 * Fixed XML_PREAMBULA to have msh namespace, so provider help works.
-* Updated the names of the generated cab and zip files so that they have correct case sensitivity. 
+* Updated the names of the generated cab and zip files so that they have correct case sensitivity.
 
 ## 0.7.4
 
@@ -147,10 +199,10 @@ Special thanks to [@TimShererAtAquent](https://github.com/TimShererAtAquent) for
 *   Removed APIs:
     -   `Get-ModuleFromMaml`
     -   `New-MarkdownHelp` always produces one md file per cmdlet in `-OutputFolder`.
-*   New APIs:    
+*   New APIs:
     -   `New-ExternalHelpCab` - create updatable help Cab files.
     -   `Get-MarkdownMetadata` - get a hashtable with yaml metadata (new in schema 2.0.0) from the markdown file
-    -   `Update-MarkdownHelp`, `Update-MarkdownHelpModule` - update your markdown with actual parameters metadata using reflection. 
+    -   `Update-MarkdownHelp`, `Update-MarkdownHelpModule` - update your markdown with actual parameters metadata using reflection.
     -   `Update-MarkdowhHelpSchema` - migrate from schema version 1.0.0 to schema version 2.0.0
     -   `Get-HelpPreview` - get preview of help from Maml file. Returns help objects.
 *   Tab-completion support by [@dotps1](https://github.com/dotps1)

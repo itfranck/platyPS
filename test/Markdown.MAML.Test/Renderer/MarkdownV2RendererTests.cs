@@ -126,6 +126,59 @@ namespace Markdown.MAML.Test.Renderer
         }
 
         [Fact]
+        public void RendererLineBreakAfterParameterForUpdate()
+        {
+            var renderer = new MarkdownV2Renderer(ParserMode.FormattingPreserve);
+
+            MamlCommand command = new MamlCommand()
+            {
+                Name = "Test-LineBreak",
+                Synopsis = new SectionBody("This is the synopsis"),
+                Description = new SectionBody("This is a long description"),
+                Notes = new SectionBody("This is a note")
+            };
+
+            var parameter1 = new MamlParameter()
+            {
+                Type = "String",
+                Name = "Name",
+                Required = true,
+                Description = "Name description.",
+                Globbing = true
+            };
+
+            var parameter2 = new MamlParameter()
+            {
+                Type = "String",
+                Name = "Path",
+                FormatOption = SectionFormatOption.LineBreakAfterHeader,
+                Required = true,
+                Description = "Path description.",
+                Globbing = true
+            };
+
+            command.Parameters.Add(parameter1);
+            command.Parameters.Add(parameter2);
+
+            var syntax1 = new MamlSyntax()
+            {
+                ParameterSetName = "ByName"
+            };
+
+            syntax1.Parameters.Add(parameter1);
+            syntax1.Parameters.Add(parameter2);
+            command.Syntax.Add(syntax1);
+
+            string markdown = renderer.MamlModelToString(command, null);
+
+            // Does not use line break and should not be added
+            Assert.Contains("### -Name\r\nName description.\r\n\r\n```yaml", markdown);
+
+            // Uses line break and should be preserved
+            Assert.Contains("### -Path\r\n\r\nPath description.\r\n\r\n```yaml", markdown);
+        }
+
+        [Fact]
         public void RendersExamplesFromMaml()
         {
             var renderer = new MarkdownV2Renderer(ParserMode.Full);
@@ -244,12 +297,10 @@ Workflow [<WorkflowCommonParameters>] [<CommonParameters>]
 ## PARAMETERS
 
 ### WorkflowCommonParameters
-This cmdlet supports the following workflow common parameters: -PSParameterCollection, -PSComputerName, -PSCredential, -PSConnectionRetryCount, -PSConnectionRetryIntervalSec, -PSRunningTimeoutSec, -PSElapsedTimeoutSec, -PSPersist, -PSAuthentication, -PSAuthenticationLevel, -PSApplicationName, -PSPort, -PSUseSSL, -PSConfigurationName, -PSConnectionURI, -PSAllowRedirection, -PSSessionOption, -PSCertificateThumbprint, -PSPrivateMetadata, -AsJob, -JobName, and -InputObject.
-For more information, see about_WorkflowCommonParameters (http://go.microsoft.com/fwlink/p/?LinkID=533952).
+This cmdlet supports the following workflow common parameters: -PSParameterCollection, -PSComputerName, -PSCredential, -PSConnectionRetryCount, -PSConnectionRetryIntervalSec, -PSRunningTimeoutSec, -PSElapsedTimeoutSec, -PSPersist, -PSAuthentication, -PSAuthenticationLevel, -PSApplicationName, -PSPort, -PSUseSSL, -PSConfigurationName, -PSConnectionURI, -PSAllowRedirection, -PSSessionOption, -PSCertificateThumbprint, -PSPrivateMetadata, -AsJob, -JobName, and -InputObject. For more information, see [about_WorkflowCommonParameters](http://go.microsoft.com/fwlink/p/?LinkID=533952).
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -290,8 +341,7 @@ schema: 2.0.0
 ## PARAMETERS
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -311,7 +361,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
             {
                 Name = "Get-Foo",
                 Synopsis = new SectionBody("This is the synopsis"),
-                Description = new SectionBody("This is a long description.\r\nWith two paragraphs.  And the second one contains of few line! They should be auto-wrapped. Because, why not? We can do that kind of the things, no problem.\r\n\r\n-- Foo. Bar.\r\n-- Don't break. The list.\r\n-- Into. Pieces"),
+                Description = new SectionBody("This is a long description.\r\nWith two paragraphs. And the second one contains of few line! They should be auto-wrapped. Because, why not? We can do that kind of the things, no problem.\r\n\r\n-- Foo. Bar.\r\n-- Don't break. The list.\r\n-- Into. Pieces"),
                 Notes = new SectionBody("This is a multiline note.\r\nSecond line.")
             };
 
@@ -405,7 +455,7 @@ Get-Foo [-Name] <String> [<CommonParameters>]
 ## DESCRIPTION
 This is a long description.
 
-With two paragraphs. 
+With two paragraphs.
 And the second one contains of few line!
 They should be auto-wrapped.
 Because, why not?
@@ -454,8 +504,7 @@ Accept wildcard characters: True
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -602,8 +651,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
